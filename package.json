@@ -1,0 +1,28 @@
+{
+  "name": "amna",
+  "version": "0.0.0",
+  "description": "AMNA: Amazing Mongoose Node.js API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/NateFerrero/amna"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "mongo",
+    "mongoose",
+    "http",
+    "rest",
+    "api"
+  ],
+  "author": "Nate Ferrero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NateFerrero/amna/issues"
+  },
+  "homepage": "https://github.com/NateFerrero/amna"
+}
