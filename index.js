@@ -22,6 +22,17 @@
 var amna = module.exports = {};
 
 /**
+ * Simple logging
+ */
+var log = function () {
+    var args = Array.prototype.slice.apply(arguments).map(function (x) {
+        return x && x.$repr ? x.$repr : x;
+    });
+    args.unshift('AMNA ===>');
+    console.info.apply(this, args);
+};
+
+/**
  * AMNA Library
  */
 [
@@ -32,7 +43,6 @@ var amna = module.exports = {};
     'err',
     'get',
     'interaction',
-    'models',
     'refs',
     'registerModules',
     'registerServices',
@@ -43,7 +53,8 @@ var amna = module.exports = {};
     'start',
     'static',
     'thing',
+    'things',
     'types'
 ].map(function (name) {
-    amna[name] = require('./lib/' + name)(amna);
+    amna[name] = require('./lib/' + name)(amna, log);
 });
