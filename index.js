@@ -89,7 +89,11 @@ log.request = function () {
     log.apply(this, args);
     args.forEach(function (arg) {
         if (arg instanceof Error) {
-            log.error(info, arg.stack);
+            err = '';
+            if (arg.reason) {
+                err = 'Reason: ' + JSON.stringify(arg.reason) + ' ';
+            }
+            log.error(info, err + arg.stack);
         }
     });
 };

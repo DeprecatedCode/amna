@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/NateFerrero/amna/issues"
   },
-  "homepage": "https://github.com/NateFerrero/amna"
+  "homepage": "https://github.com/NateFerrero/amna",
+  "dependencies": {
+    "express-ejs-layouts": "^1.1.0"
+  }
 }
