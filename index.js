@@ -41,7 +41,9 @@ var log = function () {
     else {
         args.unshift('    AMNA ' + (new Date).toString() + '\n==>');
     }
-    console.info.apply(this, args);
+    if (global.$AMNA_LOG !== false) {
+        console.info.apply(this, args);
+    }
 };
 
 /**
