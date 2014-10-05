@@ -6,7 +6,7 @@
 ### Table of Contents
 
 - [$express](../../docs/lib/$express.md)
-- *[authentication](../../docs/lib/authentication.md)*
+- **[authentication](../../docs/lib/authentication.md)**
 - [cache](../../docs/lib/cache.md)
 - [collection](../../docs/lib/collection.md)
 - [controller](../../docs/lib/controller.md)

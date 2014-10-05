@@ -27,5 +27,5 @@
 - [static](../../docs/lib/static.md)
 - [thing](../../docs/lib/thing.md)
 - [things](../../docs/lib/things.md)
-- *[types](../../docs/lib/types.md)*
+- **[types](../../docs/lib/types.md)**
 </span>

@@ -21,7 +21,7 @@
 - [responses](../../docs/lib/responses.md)
 - [route](../../docs/lib/route.md)
 - [services](../../docs/lib/services.md)
-- *[set](../../docs/lib/set.md)*
+- **[set](../../docs/lib/set.md)**
 - [stack](../../docs/lib/stack.md)
 - [start](../../docs/lib/start.md)
 - [static](../../docs/lib/static.md)

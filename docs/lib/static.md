@@ -24,7 +24,7 @@
 - [set](../../docs/lib/set.md)
 - [stack](../../docs/lib/stack.md)
 - [start](../../docs/lib/start.md)
-- *[static](../../docs/lib/static.md)*
+- **[static](../../docs/lib/static.md)**
 - [thing](../../docs/lib/thing.md)
 - [things](../../docs/lib/things.md)
 - [types](../../docs/lib/types.md)

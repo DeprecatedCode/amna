@@ -17,7 +17,7 @@
 - [refs](../../docs/lib/refs.md)
 - [registerModules](../../docs/lib/registerModules.md)
 - [registerServices](../../docs/lib/registerServices.md)
-- *[registerThings](../../docs/lib/registerThings.md)*
+- **[registerThings](../../docs/lib/registerThings.md)**
 - [responses](../../docs/lib/responses.md)
 - [route](../../docs/lib/route.md)
 - [services](../../docs/lib/services.md)
