@@ -1,4 +1,4 @@
-<span class="toc">
+<!--:toc:-->
 ### Table of Contents
 
 - [Documentation Home](../../../../#documentation)
@@ -26,8 +26,8 @@
     - [thing](../../docs/lib/thing.md#amnathing)
     - [things](../../docs/lib/things.md#amnathings)
     - [types](../../docs/lib/types.md#amnatypes)
-</span>
+<!--:end:-->
 
-<span class="title">
+<!--:title:-->
 # `amna.route`
-</span>
+<!--:end:-->

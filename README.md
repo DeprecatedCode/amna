@@ -80,7 +80,7 @@ A module is a URL route handler, and may be composed of `amna.route`, `amna.cont
 
 > Technical Note: to regenerate the following section, run `node ./dev/docs`
 
-<span class="toc">
+<!--:toc:-->
 ### Table of Contents
 
 - [Documentation Home](../../#documentation)
@@ -108,4 +108,4 @@ A module is a URL route handler, and may be composed of `amna.route`, `amna.cont
     - [thing](docs/lib/thing.md#amnathing)
     - [things](docs/lib/things.md#amnathings)
     - [types](docs/lib/types.md#amnatypes)
-</span>
+<!--:end:-->

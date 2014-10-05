@@ -32,13 +32,13 @@ var renderTOC = function (currentSection) {
 };
 
 var spanContent = function (content, name, value) {
-    return content.replace(new RegExp('<span class\=\"' + name + '\">[^]*?<\/span>', 'g'),
-                           '<span class="' + name + '">\n' + value + '\n</span>');
+    return content.replace(new RegExp('<!--:' + name + ':-->[^]*?<!--:end:-->', 'g'),
+                           '<!--:' + name + ':-->\n' + value + '\n<!--:end:-->');
 }
 
 var process = function (path, section) {
     if (!exists(path)) {
-        write(path, '<span class="toc"></span>\n\n<span class="title"></span>\n');
+        write(path, '<!--:toc:--><!--:end:-->\n\n<!--:title:--><!--:end:-->\n');
         return process(path, section);
     }
 
