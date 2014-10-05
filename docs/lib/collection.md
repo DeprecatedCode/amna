@@ -53,7 +53,7 @@ var ColorsAPI = module.exports = amna.collection(amna.things.Color);
 
 Once registered with `amna.registerModules(['colors']);`, this sets up the basic CRUD operations for the Color thing. Automatically available API routes:
 
-```
+```bash
 GET /colors/schema
     Returns a JSON representation of the thing schema
     Lives at ColorsAPI.routes.collectionGetSchema
