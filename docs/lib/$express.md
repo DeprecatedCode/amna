@@ -1,7 +1,7 @@
 <span class="toc">
 ### Table of Contents
 
-- [Documentation Home](../../../../)
+- [Documentation Home](../../../../#documentation)
 - `lib`
     - **[$express](../../docs/lib/$express.md)**
     - [authentication](../../docs/lib/authentication.md)
