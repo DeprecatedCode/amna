@@ -83,7 +83,7 @@ A module is a URL route handler, and may be composed of `amna.route`, `amna.cont
 <span class="toc">
 ### Table of Contents
 
-- [Documentation Home]()
+- [Documentation Home](../../)
 - `lib`
     - [$express](docs/lib/$express.md)
     - [authentication](docs/lib/authentication.md)
