@@ -1,7 +1,3 @@
-<span class="title">
-# AMNA Documentation
-</span>
-
 # `amna`
 
 <b>A</b>mazing <b>M</b>ongoose <b>N<b>ode.js <b>A</b>PI
