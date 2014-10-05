@@ -33,3 +33,55 @@
 # `amna.collection`
 
 <!-- - -->
+
+Represents a complete API for a thing. Fully customizable and extendable.
+
+## API
+
+#### Use as an amna Module
+
+```JavaScript
+// File: amna_modules/colors/module.js
+
+var amna = require('amna');
+
+/**
+ * Rest API: Colors
+ */
+var ColorsAPI = module.exports = amna.collection(amna.things.Color);
+```
+
+Once registered with `amna.registerModules(['colors']);`, this sets up the basic CRUD operations for the Color thing. Automatically available API routes:
+
+```
+GET /colors/schema
+    Returns a JSON representation of the thing schema
+    Lives at ColorsAPI.routes.collectionGetSchema
+
+GET /colors/autocomplete?{"$input":"bl"}
+    Returns colors with a word starting with "bl"
+    Lives at ColorsAPI.routes.collectionGetAutocomplete
+
+GET /colors ................................. returns first page of non-deleted colors, at 20 items per page
+GET /colors?{"name":"red"} .................. returns all colors with name "red"
+GET /colors?[{},{"limit":10}] ............... returns first page of non-deleted colors, at 10 items per page
+GET /colors?[{},{"deleted":null}] ........... returns first page of all colors, whether deleted or not
+GET /colors?[{},{"deleted":true}] ........... returns first page of deleted colors
+    Lives at ColorsAPI.routes.collectionGet
+
+POST /colors
+    Creates a color (or multiple colors if body is [{...}, {...}, ...])
+    Lives at ColorsAPI.routes.collectionPost
+
+GET /colors/:id
+    Returns a single color by id
+    Lives at ColorsAPI.routes.documentGet
+
+PUT /colors/:id
+    Updates a single color by id
+    Lives at ColorsAPI.routes.documentPut
+
+DELETE /colors/:id
+    Deletes a single color by id
+    Lives at ColorsAPI.routes.documentDelete
+```

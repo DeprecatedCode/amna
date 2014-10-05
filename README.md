@@ -81,7 +81,7 @@ Services are registered by a call to `amna.registerServices(['service_name'])`, 
 
 A module is a URL route handler, and may be composed of `amna.route`, `amna.controller`, or `amna.collection` types.
 
-Modules are registered by a call to `amna.registerModules(['module_name'])`, which loads `amna.$MODULES_DIR/module_name.js` - by default set to `./amna_modules` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$MODULES_DIR = 'some_modules_dir';` in the additional setup section of your app's main file.
+Modules are registered by a call to `amna.registerModules(['module_name'])`, which loads `amna.$MODULES_DIR/module_name/module.js` - by default set to `./amna_modules` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$MODULES_DIR = 'some_modules_dir';` in the additional setup section of your app's main file.
 
 ## Example Projects
 
