@@ -26,7 +26,7 @@ var renderTOC = function (currentSection) {
     return prefix + '\n- `lib`\n' + sections.map(function (section) {
         var link = (currentSection ? '../../' : '') + section.docpath +
                    '#amna' + section.title.toLowerCase().replace(/[^a-z0-9-_]/g, '');
-        return ('    - *[' + section.title + '](' + link + ')*').replace(
+        return ('    - *[`' + section.title + '`](' + link + ')*').replace(
             /\*/g, currentSection && currentSection.title === section.title ? '**' : '');
     }).join('\n');
 };
