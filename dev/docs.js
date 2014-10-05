@@ -24,7 +24,7 @@ var renderTOC = function (currentSection) {
     var prefix = '### Table of Contents\n\n- [Documentation Home](' + (currentSection ? '../../' : '') +')';
 
     return prefix + '\n- `lib`\n' + sections.map(function (section) {
-        return ('    - *[' + section.title + '](../../' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
+        return ('    - *[' + section.title + '](' + (currentSection ? '../../../../' : '') + section.docpath + ')*').replace(
             /\*/g, currentSection && currentSection.title === section.title ? '**' : '');
     }).join('\n');
 };
