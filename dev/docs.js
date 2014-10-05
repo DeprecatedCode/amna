@@ -25,7 +25,7 @@ var renderTOC = function (currentSection) {
 
     return prefix + '\n\n' + sections.map(function (section) {
         return ('- *[' + section.title + '](' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
-            /\*/g, currentSection && currentSection.title === section.title ? '*' : '');
+            /\*/g, currentSection && currentSection.title === section.title ? '**' : '');
     }).join('\n');
 };
 
