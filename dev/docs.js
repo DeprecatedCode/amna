@@ -24,7 +24,7 @@ var renderTOC = function (baseURL, currentSection) {
     var prefix = '### Table of Contents';
 
     return prefix + '\n\n' + sections.map(function (section) {
-        return ('- *[' + section.title + '](' + baseURL + section.docpath + ')*').replace(
+        return ('- *[' + section.title + '](' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
             /\*/g, currentSection && currentSection.title === section.title ? '*' : '');
     }).join('\n');
 };
@@ -42,7 +42,7 @@ var process = function (path, section) {
 
     var content = read(path).toString();
     
-    content = spanContent(content, 'toc', renderTOC('', section));
+    content = spanContent(content, 'toc', renderTOC(section));
     content = spanContent(content, 'title', section ? '# `amna.' + section.title + '`' : '# AMNA Documentation');
 
     write(path, content);

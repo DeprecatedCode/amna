@@ -11,7 +11,7 @@
 - [collection](docs/lib/collection.md)
 - [controller](docs/lib/controller.md)
 - [err](docs/lib/err.md)
-- *[get](docs/lib/get.md)*
+- [get](docs/lib/get.md)
 - [interaction](docs/lib/interaction.md)
 - [mongo](docs/lib/mongo.md)
 - [refs](docs/lib/refs.md)

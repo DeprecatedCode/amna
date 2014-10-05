@@ -8,7 +8,7 @@
 - [$express](docs/lib/$express.md)
 - [authentication](docs/lib/authentication.md)
 - [cache](docs/lib/cache.md)
-- *[collection](docs/lib/collection.md)*
+- [collection](docs/lib/collection.md)
 - [controller](docs/lib/controller.md)
 - [err](docs/lib/err.md)
 - [get](docs/lib/get.md)
