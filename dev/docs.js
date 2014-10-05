@@ -24,7 +24,9 @@ var renderTOC = function (currentSection) {
     var prefix = '### Table of Contents\n\n- [Documentation Home](../../' + (currentSection ? '../../' : '') +'#documentation)';
 
     return prefix + '\n- `lib`\n' + sections.map(function (section) {
-        return ('    - *[' + section.title + '](' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
+        var link = (currentSection ? '../../' : '') + section.docpath +
+                   '#amna' + section.title.replace(/[^a-z0-9]/g, '');
+        return ('    - *[' + section.title + '](' + link + ')*').replace(
             /\*/g, currentSection && currentSection.title === section.title ? '**' : '');
     }).join('\n');
 };
