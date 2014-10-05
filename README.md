@@ -69,13 +69,19 @@ Amna is a highly opinionated, pre-structured API development platform. It elimin
 
 An `amna.thing` is an object model containing a schema, and various helper methods. Things are available at `amna.things.*` after registration.
 
+Things are registered by a call to `amna.registerThings(['thing_name'])`, which loads `amna.$THINGS_DIR/thing_name.js` - by default set to `./amna_things` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$THINGS_DIR = 'some_things_dir';` in the additional setup section of your app's main file. 
+
 #### Service
 
 A service is a globally availible JavaScript object or function, available at `amna.services.*` after registration.
 
+Services are registered by a call to `amna.registerServices(['service_name'])`, which loads `amna.$SERVICES_DIR/service_name.js` - by default set to `./amna_services` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$SERVICES_DIR = 'some_services_dir';` in the additional setup section of your app's main file.
+
 #### Module
 
 A module is a URL route handler, and may be composed of `amna.route`, `amna.controller`, or `amna.collection` types.
+
+Modules are registered by a call to `amna.registerModules(['module_name'])`, which loads `amna.$MODULES_DIR/module_name.js` - by default set to `./amna_modules` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$MODULES_DIR = 'some_modules_dir';` in the additional setup section of your app's main file.
 
 ## Example Projects
 
