@@ -30,8 +30,13 @@ npm install amna
 ```JavaScript
 var amna = require('amna');
 
-amna.registerThings([ ... ]);       // Models & Schemas
 amna.registerServices([ ... ]);     // Global Services
+amna.registerThings([ ... ]);       // Models & Schemas
+
+// Additional setup goes here
+// - authentication (see authentication under Table of Contents)
+// - amna.set('view engine', 'ejs') if you need views
+
 amna.registerModules('/', [ ... ]); // URL Modules
 //                    ^ base URL
 
