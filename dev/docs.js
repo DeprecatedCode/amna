@@ -32,8 +32,8 @@ var renderTOC = function (currentSection) {
 };
 
 var spanContent = function (content, name, value) {
-    return content.replace(new RegExp('<!---' + name + '--->[^]*?<!----->', 'g'),
-                           '<!-- -' + name + '- -->\n' + value + '\n<!-- - -->');
+    return content.replace(new RegExp('<!-- -' + name + '- -->[^]*?<!-- - -->', 'g'),
+                           '<!-- -' + name + '- -->\n' + value + '\n\n<!-- - -->');
 }
 
 var process = function (path, section) {

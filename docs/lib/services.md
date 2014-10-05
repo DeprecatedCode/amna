@@ -26,8 +26,10 @@
     - [thing](../../docs/lib/thing.md#amnathing)
     - [things](../../docs/lib/things.md#amnathings)
     - [types](../../docs/lib/types.md#amnatypes)
+
 <!-- - -->
 
 <!-- -title- -->
 # `amna.services`
+
 <!-- - -->

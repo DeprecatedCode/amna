@@ -108,4 +108,5 @@ A module is a URL route handler, and may be composed of `amna.route`, `amna.cont
     - [thing](docs/lib/thing.md#amnathing)
     - [things](docs/lib/things.md#amnathings)
     - [types](docs/lib/types.md#amnatypes)
+
 <!-- - -->
