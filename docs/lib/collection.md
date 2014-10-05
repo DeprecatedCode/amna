@@ -48,10 +48,15 @@ var amna = require('amna');
 /**
  * Rest API: Colors
  */
-var ColorsAPI = module.exports = amna.collection(amna.things.Color);
+var ColorsAPI = module.exports = amna.collection(amna.things.Color,
+                                                 { ... options (optional) ...});
 ```
 
-Once registered with `amna.registerModules(['colors']);`, this sets up the basic CRUD operations for the Color thing. Automatically available API routes:
+Once registered with `amna.registerModules(['colors']);`, this sets up the basic CRUD operations for the Color thing. 
+
+#### Default API Routes
+
+The following are the automatically available API routes if no overrides are specified:
 
 ```bash
 GET /colors/schema
@@ -59,13 +64,16 @@ GET /colors/schema
     Lives at ColorsAPI.routes.collectionGetSchema
 
 GET /colors/autocomplete?{"$input":"bl"}
-    Returns colors with a word starting with "bl"
+    Returns colors with a word starting with "bl" (i.e. "light blue", "blue")
     Lives at ColorsAPI.routes.collectionGetAutocomplete
 
-GET /colors ................................. returns first page of non-deleted colors, at 20 items per page
+GET /colors ................................. returns first page of non-deleted colors,
+                                                at 20 items per page
 GET /colors?{"name":"red"} .................. returns all colors with name "red"
-GET /colors?[{},{"limit":10}] ............... returns first page of non-deleted colors, at 10 items per page
-GET /colors?[{},{"deleted":null}] ........... returns first page of all colors, whether deleted or not
+GET /colors?[{},{"limit":10}] ............... returns first page of non-deleted colors,
+                                                at 10 items per page
+GET /colors?[{},{"deleted":null}] ........... returns first page of all colors,
+                                                whether deleted or not
 GET /colors?[{},{"deleted":true}] ........... returns first page of deleted colors
     Lives at ColorsAPI.routes.collectionGet
 
