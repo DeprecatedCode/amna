@@ -13,9 +13,9 @@
     - [interaction](../../docs/lib/interaction.md#amnainteraction)
     - [mongo](../../docs/lib/mongo.md#amnamongo)
     - [refs](../../docs/lib/refs.md#amnarefs)
-    - [registerModules](../../docs/lib/registerModules.md#amnaregisterodules)
-    - **[registerServices](../../docs/lib/registerServices.md#amnaregisterervices)**
-    - [registerThings](../../docs/lib/registerThings.md#amnaregisterhings)
+    - [registerModules](../../docs/lib/registerModules.md#amnaregistermodules)
+    - **[registerServices](../../docs/lib/registerServices.md#amnaregisterservices)**
+    - [registerThings](../../docs/lib/registerThings.md#amnaregisterthings)
     - [responses](../../docs/lib/responses.md#amnaresponses)
     - [route](../../docs/lib/route.md#amnaroute)
     - [services](../../docs/lib/services.md#amnaservices)
