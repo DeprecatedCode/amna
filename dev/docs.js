@@ -32,13 +32,13 @@ var renderTOC = function (currentSection) {
 };
 
 var spanContent = function (content, name, value) {
-    return content.replace(new RegExp('<!--:' + name + ':-->[^]*?<!--:end:-->', 'g'),
-                           '<!--:' + name + ':-->\n' + value + '\n<!--:end:-->');
+    return content.replace(new RegExp('<!---' + name + '--->[^]*?<!----->', 'g'),
+                           '<!-- -' + name + '- -->\n' + value + '\n<!-- - -->');
 }
 
 var process = function (path, section) {
     if (!exists(path)) {
-        write(path, '<!--:toc:--><!--:end:-->\n\n<!--:title:--><!--:end:-->\n');
+        write(path, '<!-- -toc- --><!-- - -->\n\n<!-- -title- --><!-- - -->\n');
         return process(path, section);
     }
 
