@@ -69,12 +69,15 @@ GET /colors/autocomplete?{"$input":"bl"}
 
 GET /colors ................................. returns first page of non-deleted colors,
                                                 at 20 items per page
-GET /colors?{"name":"red"} .................. returns all colors with name "red"
+GET /colors?{"name":"red"} .................. returns first page of non-deleted colors,
+                                                at 20 items per page, with name "red"
 GET /colors?[{},{"limit":10}] ............... returns first page of non-deleted colors,
                                                 at 10 items per page
 GET /colors?[{},{"deleted":null}] ........... returns first page of all colors,
+                                                at 20 items per page,
                                                 whether deleted or not
-GET /colors?[{},{"deleted":true}] ........... returns first page of deleted colors
+GET /colors?[{},{"deleted":true}] ........... returns first page of deleted colors,
+                                                at 20 items per page
     Lives at ColorsAPI.routes.collectionGet
 
 POST /colors
