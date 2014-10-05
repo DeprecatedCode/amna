@@ -19,20 +19,32 @@ var sections = dir('./lib').filter(function (name) {
     };
 });
 
-var toc = function (baseURL) {
-    return sections.map(function (section) {
-        return '- [' + section.title + '](' + baseURL + docpath + ')';
+var renderTOC = function (baseURL, currentSection) {
+
+    var prefix = '### Table of Contents';
+
+    return prefix + '\n\n' + sections.map(function (section) {
+        return ('- *[' + section.title + '](' + baseURL + section.docpath + ')*').replace(
+            /\*/g, currentSection && currentSection.title === section.title ? '*' : '');
     }).join('\n');
 };
 
-var process = function (path) {
+var spanContent = function (content, name, value) {
+    return content.replace(new RegExp('<span class\=\"' + name + '\">[^]*?<\/span>', 'g'),
+                           '<span class="' + name + '">\n' + value + '\n</span>');
+}
+
+var process = function (path, section) {
     if (!exists(path)) {
-        write(path, '<toc></toc>');
+        write(path, '<span class="title"></span>\n\n<span class="toc"></span>\n');
         return process(path);
     }
 
     var content = read(path).toString();
-    content = content.replace(/<toc>.*<\/toc>/g, '<toc>a</toc>');
+    
+    content = spanContent(content, 'toc', renderTOC('', section));
+    content = spanContent(content, 'title', section ? '# `amna.' + section.title + '`' : '# AMNA Documentation');
+
     write(path, content);
     console.info('Wrote ' + path);
 };
@@ -43,7 +55,7 @@ var process = function (path) {
 process('README.md');
 
 sections.map(function (section) {
-    process(section.docpath)
+    process(section.docpath, section)
 });
 
 console.log('Done!');
