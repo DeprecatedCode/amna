@@ -19,7 +19,7 @@ var sections = dir('./lib').filter(function (name) {
     };
 });
 
-var renderTOC = function (baseURL, currentSection) {
+var renderTOC = function (currentSection) {
 
     var prefix = '### Table of Contents';
 
@@ -42,8 +42,11 @@ var process = function (path, section) {
 
     var content = read(path).toString();
     
-    content = spanContent(content, 'toc', renderTOC(section));
+    // Render Title
     content = spanContent(content, 'title', section ? '# `amna.' + section.title + '`' : '# AMNA Documentation');
+
+    // Render Table of Contents
+    content = spanContent(content, 'toc', renderTOC(section));
 
     write(path, content);
     console.info('Wrote ' + path);
