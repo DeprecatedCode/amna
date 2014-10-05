@@ -33,3 +33,6 @@
 # `amna.$express`
 
 <!-- - -->
+
+This is the internal express app instance, and should not normally need to be used externally.
+

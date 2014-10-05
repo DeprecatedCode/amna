@@ -33,3 +33,51 @@
 # `amna.authentication`
 
 <!-- - -->
+
+Before calling `amna.start(...)`, authentication must be set up. You must provide a function that will be called automatically just before startup. Normally it should look something like this:
+
+```JavaScript
+amna.authentication = function () {
+    return {
+        /**
+         * Enable username and password login
+         */
+        local: amna.things.User.model.findByEmailAndPassword,
+
+        // In amna_things/user.js
+        // User.schema.statics.findByEmailAndPassword = function (email, password, done) { ... };
+
+        /**
+         * Enable Facebook login (just leave this off to disable Facebook login)
+         */
+        facebook: amna.things.User.model.findOrCreateFromFacebook,
+
+        // In amna_things/user.js:
+        // User.schema.statics.findOrCreateFromFacebook = function (profile, done) { ... };
+        // The profile is the raw response from Facebook
+
+        /**
+         * Urls
+         */
+        urls: {
+            deauth:     '/',    // where to redirect after deauth (logout)
+            fail:       '/',    // where to redirect when login fails
+            success:    '/'     // where to redirect when login succeeds
+        },
+
+        /**
+         * Save User on the session data
+         */
+        serializeUser: function (user, done) {
+            done(null, user.id);
+        },
+
+        /**
+         * Load User from the session data
+         */
+        deserializeUser: function (id, done) {
+            amna.things.User.model.findById(id, done);
+        }
+    }
+};
+```
