@@ -21,10 +21,10 @@ var sections = dir('./lib').filter(function (name) {
 
 var renderTOC = function (currentSection) {
 
-    var prefix = '### Table of Contents';
+    var prefix = '### Table of Contents\n\n- [Documentation Home](' + (currentSection ? '../../' : '') +')';
 
-    return prefix + '\n\n' + sections.map(function (section) {
-        return ('- *[' + section.title + '](' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
+    return prefix + '\n- `lib`\n' + sections.map(function (section) {
+        return ('    - *[' + section.title + '](' + (currentSection ? '../../' : '') + section.docpath + ')*').replace(
             /\*/g, currentSection && currentSection.title === section.title ? '**' : '');
     }).join('\n');
 };
@@ -36,8 +36,8 @@ var spanContent = function (content, name, value) {
 
 var process = function (path, section) {
     if (!exists(path)) {
-        write(path, '<span class="title"></span>\n\n<span class="toc"></span>\n');
-        return process(path);
+        write(path, '<span class="toc"></span>\n\n<span class="title"></span>\n');
+        return process(path, section);
     }
 
     var content = read(path).toString();
