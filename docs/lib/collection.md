@@ -133,7 +133,7 @@ ColorsAPI.documentPut(url, function (self) { ... });
 ColorsAPI.documentDelete(url, function (self) { ... });
 ```
 
-The variable `self` is an instance of [`interaction`](../../docs/lib/interaction.md#amnainteraction).
+The variable `self` is an instance of [`amna.interaction`](../../docs/lib/interaction.md#amnainteraction).
 
 Example:
 
