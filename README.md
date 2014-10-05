@@ -2,7 +2,7 @@
 
 <b>A</b>mazing <b>M</b>ongoose <b>N</b>ode.js <b>A</b>PI
 
-# Release Status
+## Release Status
 
 No release is currently avaiable.
 
@@ -19,13 +19,13 @@ No release is currently avaiable.
                      0%
 ```
 
-# Installation
+## Installation
 
 ```bash
 npm install amna
 ```
 
-# Usage
+## Usage
 
 ```JavaScript
 var amna = require('amna');
@@ -44,7 +44,7 @@ amna.start({
 });
 ```
 
-# Introduction
+## Introduction
 
 Amna is a highly opinionated, pre-structured API development platform. It eliminates a lot of the typical repetitive code that is found in many Node.js API projects. Amna combines the following packages into one cohesive framework, and wraps commonly used functionality:
 
@@ -58,30 +58,30 @@ Amna is a highly opinionated, pre-structured API development platform. It elimin
 - Jade Templates (coming soon)
 - Static Server
 
-# Terminology
+## Terminology
 
-### Thing
+#### Thing
 
 An `amna.thing` is an object model containing a schema, and various helper methods. Things are available at `amna.things.*` after registration.
 
-### Service
+#### Service
 
 A service is a globally availible JavaScript object or function, available at `amna.services.*` after registration.
 
-### Module
+#### Module
 
 A module is a URL route handler, and may be composed of `amna.route`, `amna.controller`, or `amna.collection` types.
 
-# Example Projects
+## Example Projects
 
 *Coming soon...*
 
-# Documentation
+## Documentation
 
 > Technical Note: to regenerate the following section, run `node ./dev/docs`
 
 <!-- -toc- -->
-### Table of Contents
+#### Table of Contents
 
 - [Documentation Home](../../#documentation)
 - `lib`

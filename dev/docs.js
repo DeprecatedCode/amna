@@ -21,7 +21,7 @@ var sections = dir('./lib').filter(function (name) {
 
 var renderTOC = function (currentSection) {
 
-    var prefix = '### Table of Contents\n\n- [Documentation Home](../../' + (currentSection ? '../../' : '') +'#documentation)';
+    var prefix = '#### Table of Contents\n\n- [Documentation Home](../../' + (currentSection ? '../../' : '') +'#documentation)';
 
     return prefix + '\n- `lib`\n' + sections.map(function (section) {
         var link = (currentSection ? '../../' : '') + section.docpath +

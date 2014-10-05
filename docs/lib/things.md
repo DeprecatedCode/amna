@@ -1,5 +1,5 @@
 <!-- -toc- -->
-### Table of Contents
+#### Table of Contents
 
 - [Documentation Home](../../../../#documentation)
 - `lib`
