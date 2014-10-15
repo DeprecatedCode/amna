@@ -47,6 +47,7 @@
     "q": "^1.0.1",
     "superagent": "^0.18.0",
     "winston": "^0.7.3",
-    "googleapis": "^1.0.17"
+    "googleapis": "^1.0.17",
+    "passport-google-oauth": "^0.1.5"
   }
 }
