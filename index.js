@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * AMNA: Amazing Mongoose Node.js API
  *
@@ -39,7 +41,7 @@ var log = function () {
     }
 
     else {
-        args.unshift('    AMNA ' + (new Date).toString() + '\n==>');
+        args.unshift('    AMNA ' + (new Date()).toString() + '\n==>');
     }
     if (global.$AMNA_LOG !== false) {
         console.info.apply(this, args);
@@ -92,7 +94,7 @@ log.error = function () {
     var args = Array.prototype.slice.apply(arguments).map(function (x) {
         return x && x.$repr ? x.$repr : x.toString();
     });
-    args.unshift('    AMNA ' + (new Date).toString() + '\n==>');
+    args.unshift('    AMNA ' + (new Date()).toString() + '\n==>');
     var errBuffer = new Buffer(args.join(' ') + '\n\n', 'utf-8');
 
     /**
@@ -102,7 +104,7 @@ log.error = function () {
         pendingErrors = [errBuffer];
         fs.createWriteStream(amna.$LOG_PATH, {flags: 'a'})
             .on('error', function (err) {
-                log('Could not open log file', amna.$LOG_PATH);
+                log('Could not open log file', amna.$LOG_PATH, err);
             })
             .on('open', function () {
                 log('Logging all errors to', this.path);
@@ -133,7 +135,7 @@ log.request = function () {
     var name = args.shift();
     var req = args.shift();
     if (!req.$logId) {
-        req.$logId = ((Math.random() + Math.random())/2).toString(36).replace('0.', '');
+        req.$logId = ((Math.random() + Math.random()) / 2).toString(36).replace('0.', '');
     }
     var info = '[' + [req.$logId, req.method, req.url].join(' ') + ']';
     args.unshift(info);
@@ -141,7 +143,7 @@ log.request = function () {
     log.apply(this, args);
     args.forEach(function (arg) {
         if (arg instanceof Error) {
-            err = '';
+            var err = '';
             if (arg.reason) {
                 err = 'Reason: ' + JSON.stringify(arg.reason) + ' ';
             }
@@ -189,7 +191,9 @@ var phases = [];
     }
     var phase = mod.name.match(/^phase_(\d)+$/)
     phase = phase ? phase.pop() : 0;
-    phases[phase] || (phases[phase] = []);
+    if (!phases[phase]) {
+        phases[phase] = [];
+    }
     phases[phase].push({name: name, fn: mod});
 });
 
@@ -201,9 +205,11 @@ phases.forEach(function (mods, phase) {
         return;
     }
     log.capture();
-    mods && mods.forEach && mods.forEach(function (mod) {
-        amna[mod.name] = mod.fn(amna, log.module(mod.name));
-        log(mod.name);
-    });
+    if (mods && mods.forEach) {
+        mods.forEach(function (mod) {
+            amna[mod.name] = mod.fn(amna, log.module(mod.name));
+            log(mod.name);
+        });
+    }
     log.flush('Phase ' + phase + ' libraries loaded');
 });
