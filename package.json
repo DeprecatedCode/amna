@@ -50,5 +50,8 @@
     "googleapis": "^1.0.17",
     "passport-google-oauth": "^0.1.5",
     "passport-facebook-token": "^0.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0"
   }
 }
