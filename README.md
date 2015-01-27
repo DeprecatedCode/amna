@@ -97,6 +97,8 @@ Modules are registered by a call to `amna.registerModules(['module_name'])`, whi
 - [Documentation Home](../../#documentation)
 - `lib`
     - [`$express`](docs/lib/$express.md#amnaexpress)
+    - [`authentication-facebook`](docs/lib/authentication-facebook.md#amnaauthentication-facebook)
+    - [`authentication-google`](docs/lib/authentication-google.md#amnaauthentication-google)
     - [`authentication`](docs/lib/authentication.md#amnaauthentication)
     - [`cache`](docs/lib/cache.md#amnacache)
     - [`collection`](docs/lib/collection.md#amnacollection)
