@@ -9,7 +9,7 @@
  * AMNA Tests - Express
  */
 var assert = require('assert');
-var amna = require('../index.js');
+var amna = require('../src/index.js');
 
 describe('$express', function () {
 
