@@ -1,7 +1,7 @@
 {
   "asi": true,
   "boss": true,
-  "browser": false,
+  "browser": true,
   "camelcase": false,
   "curly": true,
   "devel": true,
@@ -26,5 +26,8 @@
   "strict": true,
   "trailing": false,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "globals": {
+    "cmd": false
+  }
 }
