@@ -46,13 +46,6 @@ module.exports = function (amna, log) {
     };
 
     var setupAuth = function () {
-        if (typeof amna.authentication.serializeUser !== 'function') {
-            throw new Error('amna.authentication.serializeUser must be defined and a function');
-        }
-        if (typeof amna.authentication.deserializeUser !== 'function') {
-            throw new Error('amna.authentication.deserializeUser must be defined and a function');
-        }
-
         if (amna.authentication.serializeUser) {
             passport.serializeUser(amna.authentication.serializeUser);
         }

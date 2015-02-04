@@ -34,7 +34,7 @@ module.exports = function (amna, log) {
             amna.things[name] = thing;
 
             thing.register(name);
-            log('registered thing', thing);
+            log('registered', thing.constructor.name, thing);
         });
     };
 };

@@ -16,7 +16,7 @@ var parseDuration = require('parse-duration');
 
 module.exports = function phase_1(amna, log) {
 
-    var AMNACache = amna.thing({
+    var AMNACache = amna.thing.mongoose({
         key: {
             type: String,
             unique: true,

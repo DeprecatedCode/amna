@@ -44,7 +44,12 @@ module.exports = function (amna, log) {
             if (typeof mod === 'string') {
                 name = mod;
                 modPath += '/' + name;
-                mod = require([process.cwd(), amna.$MODULES_DIR, name, 'module'].join('/'));
+                try {
+                    mod = require([process.cwd(), amna.$MODULES_DIR, name].join('/'));
+                }
+                catch (e) {
+                    mod = require([process.cwd(), amna.$MODULES_DIR, name, 'module'].join('/'));
+                }
             }
 
             if (typeof mod !== 'object' || typeof mod.register !== 'function') {
