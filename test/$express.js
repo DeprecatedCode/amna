@@ -8,13 +8,13 @@
  *
  * AMNA Tests - Express
  */
-var assert = require('assert');
+var expect = require('chai').expect;
 var amna = require('../src/index.js');
 
 describe('$express', function () {
 
     it ('exists', function () {
-        assert(amna.$express);
+        expect(amna.$express).to.be.defined;
     });
 
 });
