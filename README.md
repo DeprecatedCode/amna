@@ -1,23 +1,18 @@
-# `amna`
+# AMNA
 
 <b>A</b>mazing <b>M</b>ongoose <b>N</b>ode.js <b>A</b>PI
 
-## Release Status
+### JavaScript API Server Framework
 
-No release is currently avaiable.
+[![amna on npm](https://nodei.co/npm/amna.png?downloads=true&stars=true)](https://nodei.co/npm/amna/)
+[![amna on npm](https://nodei.co/npm-dl/amna.png?months=6&height=2)](https://nodei.co/npm/amna/)
 
-```
-0.1.0 development
-#################### 100%
-
-
-0.1.0 documentation
-#                    5%
-
-
-0.1.0 testing
-                     0%
-```
+[![Github Stars](https://img.shields.io/github/stars/NateFerrero/amna.svg)](https://github.com/NateFerrero/amna)
+[![Package Version](https://img.shields.io/npm/v/amna.svg)](https://www.npmjs.com/package/amna)
+[![Package License](https://img.shields.io/npm/l/amna.svg)](https://www.npmjs.com/package/amna)
+[![Code Climate](https://img.shields.io/codeclimate/github/NateFerrero/amna.svg)](https://codeclimate.com/github/NateFerrero/amna)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/NateFerrero/amna.svg)](https://codeclimate.com/github/NateFerrero/amna)
+[![Build Status](https://img.shields.io/travis/NateFerrero/amna.svg)](https://travis-ci.org/NateFerrero/amna)
 
 ## Installation
 
@@ -27,14 +22,14 @@ npm install amna
 
 ## Usage
 
-```JavaScript
+```js
 var amna = require('amna');
 
 amna.registerServices([ ... ]);     // Global Services
 amna.registerThings([ ... ]);       // Models & Schemas
 
 // Additional setup goes here
-// - authentication (see authentication under Table of Contents)
+// - authentication (if needed, see authentication under Table of Contents)
 // - amna.set('view engine', 'ejs') if you need views
 
 amna.registerModules('/', [ ... ]); // URL Modules
@@ -56,8 +51,8 @@ Amna is a highly opinionated, pre-structured API development platform. It elimin
 - Express 4
 - Passport
 - Mongoose
-    - Find or Create
-    - Text Search
+    - Find or Create Plugin
+    - Text Search Plugin
     - Types
 - EJS Templates
 - Jade Templates (coming soon)
@@ -69,7 +64,7 @@ Amna is a highly opinionated, pre-structured API development platform. It elimin
 
 An `amna.thing` is an object model containing a schema, and various helper methods. Things are available at `amna.things.*` after registration.
 
-Things are registered by a call to `amna.registerThings(['thing_name'])`, which loads `amna.$THINGS_DIR/thing_name.js` - by default set to `./amna_things` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$THINGS_DIR = 'some_things_dir';` in the additional setup section of your app's main file. 
+Things are registered by a call to `amna.registerThings(['thing_name'])`, which loads `amna.$THINGS_DIR/thing_name.js` - by default set to `./amna_things` relative to your project's root folder. You can change this path (not recommended) by setting `amna.$THINGS_DIR = 'some_things_dir';` in the additional setup section of your app's main file.
 
 #### Service
 
