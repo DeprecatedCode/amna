@@ -312,41 +312,53 @@ module.exports = function (amna) {
 
     ['Get', 'Post', 'Put', 'Delete'].forEach(function (name) {
         var method = name.toLowerCase();
-        Collection.prototype['collection' + name] = function (url, handler) {
-            return this.controller[method](url, function (self) {
-                if (!self.req.user) {
-                    return self.noauth();
-                }
-                handler(self);
-            });
-        };
-        Collection.prototype['document' + name] = function (url, handler) {
-            return this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
 
-                if (!self.req.user) {
-                    return self.noauth();
-                }
+        /**
+         * Register authenticated and unauthenticated collection route methods
+         */
+        ['collection', 'unauthenticatedCollection'].forEach(function (realm) {
+            Collection.prototype[realm + name] = function (url, handler) {
+                return this.controller[method](url, function (self) {
+                    if (realm === 'collection' && !self.req.user) {
+                        return self.noauth();
+                    }
+                    handler(self);
+                });
+            };
+        });
 
-                this.thing.model.findById(self.params.id, self.noerr(function (doc) {
-                    /**
-                     * If no doc found
-                     */
-                    if (!doc) {
-                        return self.notfound();
+        /**
+         * Register authenticated and unauthenticated document route methods
+         */
+        ['document', 'unauthenticatedDocument'].forEach(function (realm) {
+            Collection.prototype['document' + name] = function (url, handler) {
+                return this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
+
+                    if (realm === 'document' && !self.req.user) {
+                        return self.noauth();
                     }
 
-                    /**
-                     * Add doc to the interaction
-                     */
-                    self.doc = doc;
+                    this.thing.model.findById(self.params.id, self.noerr(function (doc) {
+                        /**
+                         * If no doc found
+                         */
+                        if (!doc) {
+                            return self.notfound();
+                        }
 
-                    /**
-                     * Continue with route handler
-                     */
-                    handler(self, doc /* DEPRECATE THIS SOON */);
-                }));
-            }.bind(this));
-        };
+                        /**
+                         * Add doc to the interaction
+                         */
+                        self.doc = doc;
+
+                        /**
+                         * Continue with route handler
+                         */
+                        handler(self, doc /* DEPRECATE THIS SOON */);
+                    }));
+                }.bind(this));
+            };
+        });
     });
 
     Collection.prototype.register = function register(prefix) {
