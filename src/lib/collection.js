@@ -331,7 +331,7 @@ module.exports = function (amna) {
          * Register authenticated and unauthenticated document route methods
          */
         ['document', 'unauthenticatedDocument'].forEach(function (realm) {
-            Collection.prototype['document' + name] = function (url, handler) {
+            Collection.prototype[realm + name] = function (url, handler) {
                 return this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
 
                     if (realm === 'document' && !self.req.user) {
