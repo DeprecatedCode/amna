@@ -122,7 +122,10 @@ module.exports = function (amna, log) {
             })(req, res, next);
         });
 
-        amna.$express.get('/deauth', function (req, res) {
+        amna.$express.get('/deauth', function (req, res, next) {
+            if (next.noop) { // Argument next is required
+                next.noop();
+            }
             req.logOut();
             if (req.query.redirect) {
                 return res.redirect(302, amna.authentication.urls.deauthSuccess);

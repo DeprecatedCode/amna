@@ -70,7 +70,10 @@ module.exports = function (amna, log) {
                 /**
                  * Error handling
                  */
-                amna.$express.use(function (err, req, res) {
+                amna.$express.use(function (err, req, res, next) {
+                    if (next.noop) { // Argument next is required
+                        next.noop();
+                    }
                     if (typeof err !== 'object') {
                         var toError = new Error();
                         toError.reason = err;
@@ -96,7 +99,10 @@ module.exports = function (amna, log) {
                 /**
                  * No route matched
                  */
-                amna.$express.use(function (req, res) {
+                amna.$express.use(function (req, res, next) {
+                    if (next.noop) { // Argument next is required
+                        next.noop();
+                    }
                     log.request(req, 'HTTP', 404, 'Not Found');
                     res.status(404).json(amna.responses.error('Not Found'));
                 });
