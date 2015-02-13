@@ -34,6 +34,10 @@ module.exports = function phase_1(amna, log) {
         this.key = key;
     };
 
+    CacheRecord.prototype.decayingSet = function () {
+        return new DecayingSetCacheRecord(this.key);
+    };
+
     CacheRecord.prototype.read = function (maxage, done) {
         if (typeof maxage === 'function') {
             done = maxage;
@@ -78,6 +82,80 @@ module.exports = function phase_1(amna, log) {
                     return done(err);
                 }
                 log('<success> save key', this.key);
+                done(null, doc.value);
+            }.bind(this));
+        }.bind(this));
+    };
+
+    var DecayingSetCacheRecord = function (key) {
+        this.key = key;
+    };
+
+    DecayingSetCacheRecord.prototype.read = function (maxage, done) {
+        if (typeof maxage === 'function') {
+            done = maxage;
+            maxage = Infinity;
+        }
+        else if (typeof maxage === 'string') {
+            maxage = parseDuration(maxage);
+        }
+        log('<init> read decaying set key', this.key);
+        AMNACache.model.findOne({key: this.key}, function (err, doc) {
+            if (err) {
+                return done(err);
+            }
+            else if (!doc) {
+                return done(null, null);
+            }
+            else {
+                if (!Array.isArray(doc.value)) {
+                    doc.value = [];
+                }
+                var now = new Date();
+                doc.value = doc.value.filter(function (item) {
+                    return now - item.updatedAt <= maxage;
+                });
+                log('<success> read decaying set key', this.key);
+                return done(null, doc);
+            }
+        }.bind(this));
+    };
+
+    DecayingSetCacheRecord.prototype.save = function (value, done) {
+        log('<init> save decaying set key', this.key);
+        var record = {key: this.key, value: []};
+        AMNACache.model.findOrCreate({key: this.key}, record, function (err, doc) {
+            if (err) {
+                log('<fail> save decaying set key', this.key, err);
+                return done(err);
+            }
+
+            if (!Array.isArray(doc.value)) {
+                doc.value = [];
+            }
+
+            var existing = doc.value.filter(function (item) {
+                return item.value === value;
+            });
+
+            if (existing) {
+                existing.updatedAt = new Date();
+            }
+
+            else {
+                doc.value.push({
+                    updatedAt: new Date(),
+                    value: value
+                });
+            }
+
+            doc.markModified('value');
+            doc.save(function (err) {
+                if (err) {
+                    log('<fail> save decaying set key', this.key, err);
+                    return done(err);
+                }
+                log('<success> save decaying set key', this.key);
                 done(null, doc.value);
             }.bind(this));
         }.bind(this));
