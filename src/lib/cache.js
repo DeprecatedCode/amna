@@ -136,7 +136,7 @@ module.exports = function phase_1(amna, log) {
 
             var existing = doc.value.filter(function (item) {
                 return item.value === value;
-            });
+            }).pop();
 
             if (existing) {
                 existing.updatedAt = new Date();
