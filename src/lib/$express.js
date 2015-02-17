@@ -11,11 +11,13 @@
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 module.exports = function (amna, log) {
     var app = express();
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
+    app.use(methodOverride('_method'));
 
     app.$errors = {};
 

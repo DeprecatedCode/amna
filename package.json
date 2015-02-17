@@ -40,6 +40,7 @@
     "express-partials": "0.3.x",
     "express-session": "1.5.x",
     "googleapis": "1.0.x",
+    "method-override": "2.3.x",
     "moment": "2.8.x",
     "mongoose": "3.8.x",
     "mongoose-findorcreate": "0.1.x",
