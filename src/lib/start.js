@@ -39,6 +39,8 @@ module.exports = function (amna, log) {
             amna.$LOG_PATH += '/logs/amna.log';
         }
 
+        log('Setting default log path to', amna.$LOG_PATH);
+
         /**
          * Connect to mongo
          */
