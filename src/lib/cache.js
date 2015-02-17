@@ -38,7 +38,7 @@ module.exports = function phase_1(amna, log) {
         return new DecayingSetCacheRecord(this.key);
     };
 
-    CacheRecord.prototype.read = function (maxage, done) {
+    CacheRecord.prototype.read = function (maxage, done, full) {
         if (typeof maxage === 'function') {
             done = maxage;
             maxage = Infinity;
@@ -61,12 +61,12 @@ module.exports = function phase_1(amna, log) {
                     return done(null, null); // Cache is too old
                 }
                 log('<success> read key', this.key);
-                return done(null, doc);
+                return done(null, full ? doc : doc.value);
             }
         }.bind(this));
     };
 
-    CacheRecord.prototype.save = function (value, done) {
+    CacheRecord.prototype.save = function (value, done, full) {
         log('<init> save key', this.key);
         var record = {key: this.key, value: value};
         AMNACache.model.findOrCreate({key: this.key}, record, function (err, doc) {
@@ -82,7 +82,7 @@ module.exports = function phase_1(amna, log) {
                     return done(err);
                 }
                 log('<success> save key', this.key);
-                done(null, doc.value);
+                done(null, full ? doc : doc.value);
             }.bind(this));
         }.bind(this));
     };
@@ -91,7 +91,7 @@ module.exports = function phase_1(amna, log) {
         this.key = key;
     };
 
-    DecayingSetCacheRecord.prototype.read = function (maxage, done) {
+    DecayingSetCacheRecord.prototype.read = function (maxage, done, full) {
         if (typeof maxage === 'function') {
             done = maxage;
             maxage = Infinity;
@@ -116,12 +116,12 @@ module.exports = function phase_1(amna, log) {
                     return now - item.updatedAt <= maxage;
                 });
                 log('<success> read decaying set key', this.key);
-                return done(null, doc);
+                return done(null, full ? doc : doc.value);
             }
         }.bind(this));
     };
 
-    DecayingSetCacheRecord.prototype.save = function (value, done) {
+    DecayingSetCacheRecord.prototype.save = function (value, done, full) {
         /**
          * Ensure value can be stored in JSON before continuing
          */
@@ -161,7 +161,7 @@ module.exports = function phase_1(amna, log) {
                     return done(err);
                 }
                 log('<success> save decaying set key', this.key);
-                done(null, doc.value);
+                done(null, full ? doc : doc.value);
             }.bind(this));
         }.bind(this));
     };
