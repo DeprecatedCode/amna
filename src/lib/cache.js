@@ -122,6 +122,11 @@ module.exports = function phase_1(amna, log) {
     };
 
     DecayingSetCacheRecord.prototype.save = function (value, done) {
+        /**
+         * Ensure value can be stored in JSON before continuing
+         */
+        JSON.stringify(value);
+
         log('<init> save decaying set key', this.key);
         var record = {key: this.key, value: []};
         AMNACache.model.findOrCreate({key: this.key}, record, function (err, doc) {
@@ -135,7 +140,7 @@ module.exports = function phase_1(amna, log) {
             }
 
             var existing = doc.value.filter(function (item) {
-                return item.value === value;
+                return JSON.stringify(item.value) === JSON.stringify(value);
             }).pop();
 
             if (existing) {
