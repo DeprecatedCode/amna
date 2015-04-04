@@ -24,7 +24,6 @@ app.controller('chatController', function($scope, $http, $timeout) {
         }
         $scope.messages.push(message);
         if (message.createdAt > latestTime) {
-            //console.log(latestTime);
             latestTime = message.createdAt;
         }
         if (window.innerHeight + document.body.scrollTop > document.body.scrollHeight - 10) {
@@ -55,7 +54,6 @@ app.controller('chatController', function($scope, $http, $timeout) {
 
     loadMessages(latestTime);
 
-    // $scope.name = 'Michael';
     $scope.chatName = 'guest';
 
     $scope.messages = [];
@@ -63,7 +61,6 @@ app.controller('chatController', function($scope, $http, $timeout) {
         if(!message) { 
             console.log('no message');
         } else {
-            //console.log(message, name);
             var messageObject = {author: name, body: message, time: new Date};
             addMessage(messageObject);
             saveMessage(messageObject);
@@ -73,5 +70,4 @@ app.controller('chatController', function($scope, $http, $timeout) {
             document.querySelector('.enter-message').focus();
         });
     };
-})
-// alert('its working!');
+});
