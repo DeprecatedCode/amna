@@ -2,15 +2,8 @@ var amna = module.exports = require('../../src/index.js');
 
 amna.set('view engine', 'ejs');
 
-amna.registerServices([]);     // Global Services
-amna.registerThings(['Message']);       // Models & Schemas
-
-// Additional setup goes here
-// - authentication (if needed, see authentication under Table of Contents)
-// - amna.set('view engine', 'ejs') if you need views
-
-amna.registerModules('/', []); // URL Modules
-//                    ^ base URL
+amna.registerServices([]);
+amna.registerThings(['Message']);
 
 var chatController = amna.controller();
 chatController.get('/', function(self) {
@@ -26,7 +19,6 @@ chatController.post('/send', function(self) {
             return self.done(result);
         }
     });
-    // self.done(self.req.body.message);
 });
 
 chatController.get('/messages', function(self) {
