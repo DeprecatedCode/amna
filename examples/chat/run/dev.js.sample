@@ -1,0 +1,9 @@
+var amna = require('../server.js');
+
+amna.start({
+    mongo: {db: 'amna-example-chat'},       // Mongo connection
+    port: 8080,                     // Port
+    settings: {                     // Express app settings
+    	secret: 'secret'
+    }
+});
