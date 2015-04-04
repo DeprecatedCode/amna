@@ -1,0 +1,26 @@
+    AMNA Sat Apr 04 2015 15:00:41 GMT-0700 (PDT)
+==> [m4t5ug0298wd0a4i POST /send] TypeError: undefined is not a function
+    at Route.handler (/Users/michaelp/Desktop/amna/examples/chat/server.js:21:16)
+    at handler (/Users/michaelp/Desktop/amna/src/lib/route.js:41:19)
+    at advance (/Users/michaelp/Desktop/amna/src/lib/stack.js:44:17)
+    at Stack.run (/Users/michaelp/Desktop/amna/src/lib/stack.js:47:9)
+    at Route.run (/Users/michaelp/Desktop/amna/src/lib/route.js:40:24)
+    at Object.handle (/Users/michaelp/Desktop/amna/src/lib/route.js:66:19)
+    at next_layer (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/route.js:103:13)
+    at Route.dispatch (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/route.js:107:5)
+    at c (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/index.js:195:24)
+    at Function.proto.process_params (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/index.js:253:12)
+
+    AMNA Sat Apr 04 2015 15:01:43 GMT-0700 (PDT)
+==> [85ud5livto49ara4i POST /send] TypeError: object is not a function
+    at Route.handler (/Users/michaelp/Desktop/amna/examples/chat/server.js:21:16)
+    at handler (/Users/michaelp/Desktop/amna/src/lib/route.js:41:19)
+    at advance (/Users/michaelp/Desktop/amna/src/lib/stack.js:44:17)
+    at Stack.run (/Users/michaelp/Desktop/amna/src/lib/stack.js:47:9)
+    at Route.run (/Users/michaelp/Desktop/amna/src/lib/route.js:40:24)
+    at Object.handle (/Users/michaelp/Desktop/amna/src/lib/route.js:66:19)
+    at next_layer (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/route.js:103:13)
+    at Route.dispatch (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/route.js:107:5)
+    at c (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/index.js:195:24)
+    at Function.proto.process_params (/Users/michaelp/Desktop/amna/node_modules/express/lib/router/index.js:253:12)
+

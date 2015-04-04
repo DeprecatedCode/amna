@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="amna-example-chat">
+	<head>
+		<title>AMNA Chat Example</title>
+		<script type="text/javascript" src="/js/angular.js"></script>
+		<script type="text/javascript" src="/js/app.js"></script>
+		<style>
+			.message-status-saving {color: gray;}
+			.message-status-saved {color: green;}
+			.message-status-error {color: red;}
+		</style>
+	</head>
+	<body>
+	<h1>AMNA Chat Example</h1>
+	<div ng-controller="chatController">
+
+		<div ng-repeat="message in messages">
+			<p class="message-status-{{message.status}}">
+				<b>{{message.author}}</b>, {{message.body}} {{message.createdAt | date : 'medium'}}
+			</p>
+		</div>
+
+		<p class="error" ng-show="error">Lost server connection</p>
+
+		<form>
+			<input placeholder="Enter name" ng-model="chatName"><br><br>
+		</form>
+		Hello {{chatName}}<br><br>
+		<form ng-submit="sendMessage(chatMessage, chatName)">
+			<input class="enter-message" placeholder="Enter message" ng-model="chatMessage" autofocus>
+			<input type="submit">
+		</form>
+	</div>
+	</body>
+
+</html>
