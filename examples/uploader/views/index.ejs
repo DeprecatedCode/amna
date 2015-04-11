@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="amna-example-upload">
+    <head>
+        <title>AMNA Upload Example</title>
+        <script type="text/javascript" src="/js/angular.js"></script>
+        <script type="text/javascript" src="/js/angular-animate.js"></script>
+        <script type="text/javascript" src="/js/ng-upload.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <style>
+            img {
+                width: 64px;
+            }
+            .image-container {
+                width: 64px;
+                height: 64px;
+                float: left;
+                background-color: #CCC;
+                margin-right: 4px;
+                margin-bottom: 4px;
+            }
+
+            .notice-container {
+                height: 64px;
+                padding-top: 24px;
+            }
+
+            /* http://plnkr.co/edit/jBukeP?p=preview */
+            .fadein.ng-hide-remove,
+            .fadeout.ng-hide-add {
+                -webkit-transition: 400ms ease-in-out all;
+                -moz-transition: 400ms ease-in-out all;
+                -o-transition: 400ms ease-in-out all;
+                transition: 400ms ease-in-out all;
+                display: block !important;
+            }
+
+            .fadein.ng-hide-remove,
+            .fadeout.ng-hide-add.ng-hide-add-active {
+                opacity: 0;
+            }
+
+            .fadeout.ng-hide-add,
+            .fadein.ng-hide-remove.ng-hide-remove-active {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>AMNA Upload Example</h1>
+    <div ng-controller="uploadController">
+        <form ng-upload="complete(content)" action="/send" enctype="multipart/form-data">
+            <input name="uploadFile" type="file" valid-file required ng-model="filename">
+            <input type="submit">
+        </form>
+        <div class="notice-container">
+            <div ng-show="showMessage" class="fadein fadeout">{{notice}}</div>
+        </div>
+
+        <div ng-repeat="picture in pictures">
+            <div class="image-container">
+                <a href="images/{{picture.name}}" target="blank">
+                    <img ng-src="images/{{picture.name}}">
+                </a>
+            </div>
+        </div>
+        <!-- <form method="POST" action="/send" enctype="multipart/form-data">
+            <input name="uploadname" type="file">
+            <input type="submit">
+        </form> -->
+    </div>
+    </body>
+
+</html>

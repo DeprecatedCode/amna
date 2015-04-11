@@ -62,7 +62,7 @@ module.exports = function (amna, log) {
                 /**
                  * File upload capacity
                  */
-                amna.$express.use(multipart({uploadDir: process.cwd() + '/uploads'}));
+                //amna.$express.use(multipart({uploadDir: process.cwd() + '/uploads'}));
 
                 /**
                  * Register all normal modules here

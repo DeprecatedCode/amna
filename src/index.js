@@ -183,7 +183,8 @@ var phases = [];
     'static',
     'thing',
     'things',
-    'types'
+    'types',
+    'uploads'
 ].map(function (name) {
     var mod = require('./lib/' + name);
     if (typeof mod !== 'function') {

@@ -1,0 +1,9 @@
+var amna = require('../server.js');
+
+amna.start({
+    mongo: {db: 'amna-example-upload'},       // Mongo connection
+    port: 5858,                     // Port
+    settings: {                     // Express app settings
+    	secret: 'secret'
+    }
+});
