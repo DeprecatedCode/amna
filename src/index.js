@@ -162,6 +162,7 @@ var phases = [];
  */
 [
     '$express',
+    '$multer',
     'authentication',
     'cache',
     'collection',
@@ -183,8 +184,7 @@ var phases = [];
     'static',
     'thing',
     'things',
-    'types',
-    'uploads'
+    'types'
 ].map(function (name) {
     var mod = require('./lib/' + name);
     if (typeof mod !== 'function') {

@@ -48,6 +48,7 @@ module.exports = function (amna, log) {
                     mod = require([process.cwd(), amna.$MODULES_DIR, name].join('/'));
                 }
                 catch (e) {
+                    console.error(e);
                     mod = require([process.cwd(), amna.$MODULES_DIR, name, 'module'].join('/'));
                 }
             }

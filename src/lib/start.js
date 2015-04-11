@@ -8,7 +8,6 @@
  *
  * AMNA - Start
  */
-
 module.exports = function (amna, log) {
     return function (config, done) {
 
