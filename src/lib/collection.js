@@ -354,7 +354,7 @@ module.exports = function (amna) {
                         /**
                          * Continue with route handler
                          */
-                        handler(self, doc /* DEPRECATE THIS SOON */);
+                        handler(self);
                     }));
                 }.bind(this));
             };
