@@ -15,11 +15,16 @@ module.exports = function (amna, log) {
         this.url = url;
         this.handler = handler;
         this.preStack = amna.stack();
+        this.midStack = amna.stack();
         this.postStack = amna.stack();
     };
 
     Route.prototype.pre = function (handler) {
         this.preStack.push(handler);
+    };
+
+    Route.prototype.mid = function (handler) {
+        this.midStack.push(handler);
     };
 
     Route.prototype.post = function (handler) {

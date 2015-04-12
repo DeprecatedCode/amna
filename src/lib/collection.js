@@ -234,7 +234,8 @@ module.exports = function (amna) {
                 /**
                  * Ensure that the user has access to the doc
                  */
-                if (!self.doc.createdBy || !self.req.user._id.equals(self.doc.createdBy)) {
+                if (!self.permissionGranted &&
+                    (!self.doc.createdBy || !self.req.user._id.equals(self.doc.createdBy))) {
                     return self.noaccess();
                 }
 
@@ -268,7 +269,8 @@ module.exports = function (amna) {
                 /**
                  * Ensure that the user has access to the document
                  */
-                if (!self.doc.createdBy || !self.req.user._id.equals(self.doc.createdBy)) {
+                if (!self.permissionGranted &&
+                    (!self.doc.createdBy || !self.req.user._id.equals(self.doc.createdBy))) {
                     return self.noaccess();
                 }
 
@@ -318,12 +320,26 @@ module.exports = function (amna) {
          */
         ['collection', 'unauthenticatedCollection'].forEach(function (realm) {
             Collection.prototype[realm + name] = function (url, handler) {
-                return this.controller[method](url, function (self) {
+                var route = this.controller[method](url, function (self) {
+                    /**
+                     * Ensure that there is a user present for normal (as opposed to unauthenticated) routes
+                     */
                     if (realm === 'collection' && !self.req.user) {
                         return self.noauth();
                     }
-                    handler(self);
+
+                    /**
+                     * Run the mid stack
+                     */
+                    route.midStack.run(self, function () {
+                        /**
+                         * Continue with route handler
+                         */
+                        handler(self);
+                    });
+
                 });
+                return route;
             };
         });
 
@@ -332,8 +348,10 @@ module.exports = function (amna) {
          */
         ['document', 'unauthenticatedDocument'].forEach(function (realm) {
             Collection.prototype[realm + name] = function (url, handler) {
-                return this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
-
+                var route = this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
+                    /**
+                     * Ensure that there is a user present for normal (as opposed to unauthenticated) routes
+                     */
                     if (realm === 'document' && !self.req.user) {
                         return self.noauth();
                     }
@@ -352,11 +370,18 @@ module.exports = function (amna) {
                         self.doc = doc;
 
                         /**
-                         * Continue with route handler
+                         * Run the mid stack
                          */
-                        handler(self);
+                        route.midStack.run(self, function () {
+                            /**
+                             * Continue with route handler
+                             */
+                            handler(self);
+                        });
+
                     }));
                 }.bind(this));
+                return route;
             };
         });
     });
