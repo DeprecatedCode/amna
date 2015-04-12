@@ -1,0 +1,126 @@
+<!doctype html>
+<html ng-app="amna-example-upload">
+    <head>
+        <title>AMNA Upload Example</title>
+        <script type="text/javascript" src="/js/angular.js"></script>
+        <script type="text/javascript" src="/js/angular-animate.js"></script>
+        <script type="text/javascript" src="/js/ng-upload.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <style>
+            img {
+                width: 64px;
+            }
+            .image-container {
+                width: 64px;
+                height: 64px;
+                float: left;
+                background-color: #CCC;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                position: relative;
+            }
+
+            .notice-container {
+                height: 64px;
+                padding-top: 24px;
+            }
+
+            /* http://plnkr.co/edit/jBukeP?p=preview */
+            .fadein.ng-hide-remove,
+            .fadeout.ng-hide-add {
+                -webkit-transition: 400ms ease-in-out all;
+                -moz-transition: 400ms ease-in-out all;
+                -o-transition: 400ms ease-in-out all;
+                transition: 400ms ease-in-out all;
+                display: block !important;
+            }
+
+            .fadein.ng-hide-remove,
+            .fadeout.ng-hide-add.ng-hide-add-active {
+                opacity: 0;
+            }
+
+            .fadeout.ng-hide-add,
+            .fadein.ng-hide-remove.ng-hide-remove-active {
+                opacity: 1;
+            }
+
+            .success {
+                color: green;
+            }
+
+            .error {
+                color: red;
+            }
+
+            .delete {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                color: white;
+                display: none;
+                background: gray;
+                padding: 5px;
+                border-radius: 100%;
+                width: 16px;
+                text-align: center;
+                font-weight: bold;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            .deleting {
+                opacity: 0.3;
+            }
+
+            div.image-container.deleting .delete {
+                display: none;
+            }
+
+            .image-container:hover {
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+
+            .image-container:hover .delete {
+                display: block;
+            }
+
+            .delete:hover {
+                background: red;
+            }
+
+            .delete:active {
+                background: darkred;
+                box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+    </head>
+    <body>
+    <h1>AMNA Upload Example</h1>
+    <div ng-controller="uploadController">
+        <form ng-upload="complete(content)" action="/send" enctype="multipart/form-data">
+            <input name="uploadFile" type="file" valid-file required ng-model="filename">
+            <input type="submit">
+        </form>
+        <div class="notice-container">
+            <div ng-show="showMessage && response.status === 'error'" class="fadein fadeout error">{{response.reason}}</div>
+            <div ng-show="showMessage && response.status === 'ok'" class="fadein fadeout success">Your photo was uploaded successfully</div>
+        </div>
+
+        <div ng-repeat="picture in pictures">
+            <div class="image-container {{picture.deleting ? 'deleting' : ''}}">
+                <div class="delete" ng-click="deleteImage(picture)">x</div>
+                <a href="images/{{picture.name}}" target="blank">
+                    <img ng-src="images/{{picture.name}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    </body>
+
+</html>

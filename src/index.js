@@ -162,6 +162,7 @@ var phases = [];
  */
 [
     '$express',
+    '$multer',
     'authentication',
     'cache',
     'collection',

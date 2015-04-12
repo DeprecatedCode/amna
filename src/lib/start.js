@@ -8,8 +8,6 @@
  *
  * AMNA - Start
  */
-var multipart = require('connect-multiparty');
-
 module.exports = function (amna, log) {
     return function (config, done) {
 
@@ -58,11 +56,6 @@ module.exports = function (amna, log) {
              * Connect to auth service and continue when ready
              */
             amna.$auth(function () {
-
-                /**
-                 * File upload capacity
-                 */
-                amna.$express.use(multipart({uploadDir: process.cwd() + '/uploads'}));
 
                 /**
                  * Register all normal modules here
