@@ -4,14 +4,13 @@
  * Multer File Upload
  */
 var multer = require('multer');
-var fs = require('fs');
 
-module.exports = function (amna, log) {
+module.exports = function (amna) {
 
     /**
      * File upload capacity
      */
-    amna.$express.use(multer({ 
+    amna.$express.use(multer({
         dest: process.cwd() + '/uploads'
     }));
 };

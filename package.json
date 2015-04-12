@@ -46,6 +46,7 @@
     "mongoose-findorcreate": "0.1.x",
     "mongoose-text-search": "0.0.x",
     "mongoose-types": "1.0.x",
+    "multer": "0.1.x",
     "parse-duration": "0.1.x",
     "passport": "0.2.x",
     "passport-facebook": "1.0.x",
