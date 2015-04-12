@@ -57,13 +57,19 @@ module.exports = function (amna, log) {
      */
     Interaction.prototype.done = function () {
         var args = Array.prototype.slice.apply(arguments);
-        if (!this.$done) {
-            console.log(this);
-        }
         this.$done.apply(this, args);
         this.$whenDone.map(function (x) {
             x.apply(this, args);
         }.bind(this));
+    };
+
+    /**
+     * Log
+     */
+    Interaction.prototype.log = function () {
+        var args = Array.prototype.slice.apply(arguments);
+        args.unshift(this.req);
+        log.request.apply(log, args);
     };
 
     /**

@@ -162,6 +162,14 @@ module.exports = function (amna) {
         return this.model.find(query, null, options, done); // null is select
     };
 
+    MongooseThing.prototype.findOne = function (query, options, done) {
+        return this.model.findOne(query, null, options, done); // null is select
+    };
+
+    MongooseThing.prototype.findById = function (id, done) {
+        return this.model.findById(id, done);
+    };
+
     MongooseThing.prototype.autocomplete = function (query, options, done) {
         if (!query || typeof query !== 'object') {
             return done('autocomplete query must be an object');

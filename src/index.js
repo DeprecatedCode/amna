@@ -175,6 +175,7 @@ var phases = [];
     'registerModules',
     'registerServices',
     'registerThings',
+    'render',
     'responses',
     'route',
     'services',
