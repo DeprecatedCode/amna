@@ -24,6 +24,14 @@ module.exports = function (amna) {
         var qOpts = self.req.jsonQueryOptions;
 
         /**
+         * Populate for collectionGet
+         */
+        if ('populate' in qOpts) {
+            self.req.populate = [qOpts.populate];
+            delete qOpts.populate;
+        }
+
+        /**
          * Check for allowed keys in JSON Query options
          */
         var defaultOptions = {'limit': 20, 'page': 1, 'deleted': false, 'sort': null};
