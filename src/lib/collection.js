@@ -27,7 +27,9 @@ module.exports = function (amna) {
          * Populate for collectionGet
          */
         if ('populate' in qOpts) {
-            self.req.populate = [qOpts.populate];
+            self.req.populate = qOpts.populate.map(function (pop) {
+                return Array.isArray(pop) ? pop : [pop];
+            });
             delete qOpts.populate;
         }
 
