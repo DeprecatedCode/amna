@@ -19,7 +19,7 @@ module.exports = function (amna) {
     /**
      * Handle pagination and deleted records
      */
-    var pageAndDeleteQuery = function (self) {
+    amna.pageAndDeleteQuery = function (self) {
         var query = {};
         var qOpts = self.req.jsonQueryOptions;
 
@@ -103,7 +103,7 @@ module.exports = function (amna) {
          */
         if (options.collectionGetAutocomplete !== false) {
             collection.routes.collectionGetAutocomplete = collection.collectionGet('/autocomplete', function (self) {
-                var info = pageAndDeleteQuery(self);
+                var info = amna.pageAndDeleteQuery(self);
                 Object.keys(info.query).forEach(function (key) {
                     self.req.jsonQuery[key] = info.query[key];
                 });
@@ -121,7 +121,7 @@ module.exports = function (amna) {
                 if (self.value) {
                     return self.done(self.value);
                 }
-                var info = pageAndDeleteQuery(self);
+                var info = amna.pageAndDeleteQuery(self);
                 Object.keys(info.query).forEach(function (key) {
                     self.req.jsonQuery[key] = info.query[key];
                 });
