@@ -18,6 +18,8 @@ module.exports = function (amna, log) {
     amna.$express.$errors.MongoDB = 'Not Connected';
 
     return {
+        mongoose: mongoose,
+
         connect: function (mongo, next) {
 
             /**
