@@ -15,6 +15,7 @@ mongooseTypes.loadTypes(mongoose);
 
 module.exports = function () {
     return {
+        ObjectId: mongoose.Types.ObjectId,
         Mixed: mongoose.SchemaTypes.Mixed,
         Email: mongoose.SchemaTypes.Email,
         Url: mongoose.SchemaTypes.Url,
