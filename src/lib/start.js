@@ -8,6 +8,8 @@
  *
  * AMNA - Start
  */
+var http = require('http');
+
 module.exports = function (amna, log) {
     return function (config, done) {
 
