@@ -77,18 +77,21 @@ module.exports = function (amna, log) {
         defaults();
         setupAuth();
 
+        amna.$passport = passport;
+        amna.$mongoStore = new MongoStore({
+            mongoose_connection: amna.$mongooseConnection.connections[0]
+        }, function () {
+            log('session database connected');
+            if (done) {
+                done();
+            }
+        });
+
         amna.$express.use(session({
             resave: true,
             saveUninitialized: true,
             secret: amna.$express.get('secret'),
-            store: new MongoStore({
-                mongoose_connection: amna.$mongooseConnection.connections[0]
-            }, function () {
-                log('session database connected');
-                if (done) {
-                    done();
-                }
-            })
+            store: amna.$mongoStore
         }));
 
         amna.$express.use(passport.initialize());
