@@ -1,6 +1,6 @@
 {
   "name": "amna",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "AMNA: Amazing Mongoose Node.js API",
   "main": "./src/index.js",
   "scripts": {
