@@ -107,7 +107,7 @@ module.exports = function (amna, log) {
                 /**
                  * Start the express app
                  */
-                if (!config.console) {
+                if (amna.$START_EXPRESS_SERVER !== false) {
                     amna.$http = http.createServer(amna.$express);
                     amna.$http.listen(config.port || 8080, done);
                 }
