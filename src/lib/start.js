@@ -48,6 +48,13 @@ module.exports = function (amna, log) {
             log('database connected');
 
             /**
+             * Allow for running commands once the database is connected
+             */
+            if (typeof amna.$ON_DB_CONNECTED === 'function') {
+                amna.$ON_DB_CONNECTED();
+            }
+
+            /**
              * Allow for running AMNA without the express server
              */
             if (amna.$START_EXPRESS_SERVER === false) {
