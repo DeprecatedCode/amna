@@ -48,6 +48,13 @@ module.exports = function (amna, log) {
             log('database connected');
 
             /**
+             * Allow for running AMNA without the express server
+             */
+            if (amna.$START_EXPRESS_SERVER === false) {
+                return;
+            }
+
+            /**
              * Authentication
              */
             if (typeof amna.authentication === 'function') {
@@ -107,10 +114,8 @@ module.exports = function (amna, log) {
                 /**
                  * Start the express app
                  */
-                if (amna.$START_EXPRESS_SERVER !== false) {
-                    amna.$http = http.createServer(amna.$express);
-                    amna.$http.listen(config.port || 8080, done);
-                }
+                amna.$http = http.createServer(amna.$express);
+                amna.$http.listen(config.port || 8080, done);
             });
         });
     };
