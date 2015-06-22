@@ -306,6 +306,8 @@ module.exports = function (amna) {
         this.thing = thing;
         this.controller = amna.controller();
 
+        this.preStack = amna.stack();
+
         setupCollectionSchema(this, options);
         setupCollectionAutocomplete(this, options);
         setupCollectionGet(this, options);
@@ -316,6 +318,10 @@ module.exports = function (amna) {
         setupDocumentPost(this, options);
         setupDocumentPut(this, options);
         setupDocumentDelete(this, options);
+    };
+
+    Collection.prototype.pre = function (handler) {
+        this.preStack.push(handler);
     };
 
     Collection.prototype.__defineGetter__('$repr', function () {
@@ -330,7 +336,8 @@ module.exports = function (amna) {
          */
         ['collection', 'unauthenticatedCollection'].forEach(function (realm) {
             Collection.prototype[realm + name] = function (url, handler) {
-                var route = this.controller[method](url, function (self) {
+                var collection = this;
+                var route = collection.controller[method](url, function (self) {
                     /**
                      * Ensure that there is a user present for normal (as opposed to unauthenticated) routes
                      */
@@ -339,15 +346,19 @@ module.exports = function (amna) {
                     }
 
                     /**
-                     * Run the mid stack
+                     * Run the collection pre stack
                      */
-                    route.midStack.run(self, function () {
+                    collection.preStack.run(self, function () {
                         /**
-                         * Continue with route handler
+                         * Run the mid stack
                          */
-                        handler(self);
+                        route.midStack.run(self, function () {
+                            /**
+                             * Continue with route handler
+                             */
+                            handler(self);
+                        });
                     });
-
                 });
                 return route;
             };
@@ -358,7 +369,8 @@ module.exports = function (amna) {
          */
         ['document', 'unauthenticatedDocument'].forEach(function (realm) {
             Collection.prototype[realm + name] = function (url, handler) {
-                var route = this.controller[method]('/' + amna.mongoId('id') + url, function (self) {
+                var collection = this;
+                var route = collection.controller[method]('/' + amna.mongoId('id') + url, function (self) {
                     /**
                      * Ensure that there is a user present for normal (as opposed to unauthenticated) routes
                      */
@@ -366,31 +378,38 @@ module.exports = function (amna) {
                         return self.noauth();
                     }
 
-                    this.thing.model.findById(self.params.id, self.noerr(function (doc) {
+                    /**
+                     * Run the collection pre stack
+                     */
+                    collection.preStack.run(self, function () {
                         /**
-                         * If no doc found
+                         * Find the document
                          */
-                        if (!doc) {
-                            return self.notfound();
-                        }
-
-                        /**
-                         * Add doc to the interaction
-                         */
-                        self.doc = doc;
-
-                        /**
-                         * Run the mid stack
-                         */
-                        route.midStack.run(self, function () {
+                        collection.thing.model.findById(self.params.id, self.noerr(function (doc) {
                             /**
-                             * Continue with route handler
+                             * If no doc found
                              */
-                            handler(self);
-                        });
+                            if (!doc) {
+                                return self.notfound();
+                            }
 
-                    }));
-                }.bind(this));
+                            /**
+                             * Add doc to the interaction
+                             */
+                            self.doc = doc;
+
+                            /**
+                             * Run the mid stack
+                             */
+                            route.midStack.run(self, function () {
+                                /**
+                                 * Continue with route handler
+                                 */
+                                handler(self);
+                            });
+                        }));
+                    });
+                });
                 return route;
             };
         });
