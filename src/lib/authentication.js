@@ -130,6 +130,7 @@ module.exports = function (amna, log) {
                 next.noop();
             }
             req.logOut();
+            req.session.destroy();
             if (req.query.redirect) {
                 return res.redirect(302, amna.authentication.urls.deauthSuccess);
             }
